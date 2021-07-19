@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+	@ObservedObject var stepHelper = StepHelper()
+	
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+		ZStack {
+			Rectangle().foregroundColor(.black)
+			Text(stepText)
+				.font(.system(size: 100))
+				.foregroundColor(.white)
+		}
     }
+	
+	var stepText: String {
+		stepHelper.lastSteps != 0 ? String(stepHelper.lastSteps) : ""
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
